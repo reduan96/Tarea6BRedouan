@@ -11,11 +11,14 @@ import java.util.Objects;
  *
  * @author redu2
  */
-public class Medico extends Empleado{
-    
-    private String especialidad;
+public class Medico extends Empleado {
 
-    public Medico(String especialidad, String numSS, double salario, 
+    //Atributos de la clase medico
+    private String especialidad;
+    public static final double IRPF = 0.21;
+    
+    //Constructor de la clase medico
+    public Medico(String especialidad, String numSS, double salario,
             String nombre, String apellidos, Nif nif) {
         super(numSS, salario, nombre, apellidos, nif);
         this.especialidad = especialidad;
@@ -61,19 +64,21 @@ public class Medico extends Empleado{
     public String toString() {
         return "Medico{" + "especialidad=" + especialidad + '}';
     }
-    
+
     //Método que trata al paciente objeto pasado por parámetro y la medicina
     //a dar en objeto String
-    public void tratar(Paciente p, String medicina){
-        
-        p.tomarMedicina(medicina);
+    public void tratar(Paciente p, String medicina) {
+
+        System.out.println("El medico " + this.getNombre() +" "+ this.getApellidos()
+                + " ha tratado el paciente " + p.getNombre() +" "+ p.getApellidos()
+                + " con " + medicina);
     }
-    
+
     //Método que calcula la retención del sueldo en base al tanto % que se indica
     @Override
     public double calcularIRPF() {
-       
-        return this.getSalario() * 0.21;
+
+        return this.getSalario() * IRPF;
     }
 
 }

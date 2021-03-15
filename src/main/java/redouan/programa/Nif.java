@@ -107,6 +107,7 @@ public class Nif {
     //Método público que devuelve la pròxima fecha de renovación del dni
     public LocalDate renovar(LocalDate fechaSolicitud) {
 
-        return fechaSolicitud.plusYears(10);
+        this.fechaCaducidad = fechaSolicitud.plusYears(10);
+        return this.fechaCaducidad;
     }
 }

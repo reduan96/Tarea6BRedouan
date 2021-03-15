@@ -125,7 +125,7 @@ public class Hospital {
     public void contratarEmpleado(Empleado e){
         
         this.listaEmpleados.add(e);
-        System.out.println("Añadido al empleado " + e.getNombre() + e.getApellidos()
+        System.out.println("Añadido al empleado " + e.getNombre() +" "+ e.getApellidos()
         + " con exito a la base de datos del hospital");
     }
     
@@ -133,7 +133,7 @@ public class Hospital {
     public void ingresarPaciente(Paciente p){
         
         this.listaPacientes.add(p);
-        System.out.println("Añadido al paciente " + p.getNombre() + p.getApellidos()
+        System.out.println("Añadido al paciente " + p.getNombre() +" "+ p.getApellidos()
         + " con exito a la base de datos del hospital");
     }
 }

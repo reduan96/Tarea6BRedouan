@@ -75,7 +75,7 @@ public class Administrativo extends Empleado{
     @Override
     public double calcularIRPF() {
         
-        if(this.getGrupo().equals(grupo.GRUPOA)){
+        if(this.grupo.equals(GrupoAdmin.GRUPOA)){
             
             return this.getSalario() * 0.18;
         }else{

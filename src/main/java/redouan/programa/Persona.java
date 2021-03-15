@@ -95,6 +95,6 @@ public class Persona {
     //Método renovar el dni que devuelve la proxima fecha de renovación
     public void renovarNif(LocalDate fechaSolicitud) {
 
-        nif.renovar(fechaSolicitud);
+        this.nif.renovar(fechaSolicitud);
     }
 }

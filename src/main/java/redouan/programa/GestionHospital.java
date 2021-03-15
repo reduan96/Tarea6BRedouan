@@ -14,7 +14,7 @@ public class GestionHospital {
     public static void main(String[] args) {
         
         //Creación del objeto hospital
-        Hospital CostaDelSol = new Hospital("CostaDelSol", "Marbella", 2000);
+        Hospital CostaDelSol = new Hospital("Costa Del Sol", "Marbella", 2000);
         
         //Inclusión de los empleados en su lista correspondiente tanto de los 
         //2 medicos como los 3 administrativos
@@ -28,6 +28,7 @@ public class GestionHospital {
                 "0009446755", 1700, "Luisa", "Martin Ferrera", new Nif(95958322L)));
         CostaDelSol.contratarEmpleado(crearPersonalPAS(GrupoAdmin.GRUPOA, 
                 "0009449942", 1300, "Jose", "Fernandez Pardo", new Nif(95958988L)));
+        System.out.println("");
         
         //Inclusión y creación previa de los 5 pacientes a registrar en el hospital
         CostaDelSol.ingresarPaciente(crearPaciente("0089", "Hugo", "Rodriguez Fernandez",
@@ -40,28 +41,22 @@ public class GestionHospital {
                 new Nif(96735132L)));
         CostaDelSol.ingresarPaciente(crearPaciente("0017", "Diego", "Martin Sanchez",
                 new Nif(96735893L)));
+        System.out.println("");
         
         //Tratamiento de un paciente con un medicamento indicado por el medico
-        //CostaDelSol.getListaEmpleados().get(0)
-        //NO SE COMO ACCEDER AL MÉTODO TRATAR DE LA CLASE MÉDICO!!!!
+        if(CostaDelSol.getListaEmpleados().get(1) instanceof Empleado){
+            
+            Medico medico = (Medico) CostaDelSol.getListaEmpleados().get(0);
+            medico.tratar(CostaDelSol.getListaPacientes().get(0), "Paracetamol\n");
+        }
         
-        //Ejecución del método abstracto del irpf en todos los empleados
-        // primer medico
-        System.out.println("El empleado " + CostaDelSol.getListaEmpleados().get(0).getNombre()
-        + ", médico se le retiene(IRPF) en euros: " + CostaDelSol.getListaEmpleados().get(0).calcularIRPF());
-        //segundo medico
-        System.out.println("El empleado " + CostaDelSol.getListaEmpleados().get(1).getNombre()
-        + ", médico se le retiene(IRPF) en euros: " + CostaDelSol.getListaEmpleados().get(1).calcularIRPF());
-        //primer admin
-        System.out.println("El empleado " + CostaDelSol.getListaEmpleados().get(2).getNombre()
-        + ", médico se le retiene(IRPF) en euros: " + CostaDelSol.getListaEmpleados().get(2).calcularIRPF());
-        //segundo admin
-        System.out.println("El empleado " + CostaDelSol.getListaEmpleados().get(3).getNombre()
-        + ", médico se le retiene(IRPF) en euros: " + CostaDelSol.getListaEmpleados().get(3).calcularIRPF());
-        //tercer admin
-        System.out.println("El empleado " + CostaDelSol.getListaEmpleados().get(4).getNombre()
-        + ", médico se le retiene(IRPF) en euros: " + CostaDelSol.getListaEmpleados().get(4).calcularIRPF());
-        
+        //For each para calcular el irpf
+        for(Empleado emp : CostaDelSol.getListaEmpleados()){
+            
+            System.out.println("el empleado " + emp.getNombre() + " se le retiene "
+                    + emp.calcularIRPF() + " euros");
+        }
+          
     }
     
     //Método que crea el paciente
@@ -82,13 +77,13 @@ public class GestionHospital {
     public static Administrativo crearPersonalPAS(GrupoAdmin grupo, String numSS, double salario,
             String nombre, String apellidos, Nif nif){
         
-        if(grupo.equals(grupo.GRUPOA)){
+        if(grupo.equals(GrupoAdmin.GRUPOA)){
             
-            return new Administrativo(grupo.GRUPOA, numSS, salario, nombre, 
+            return new Administrativo(GrupoAdmin.GRUPOA, numSS, salario, nombre, 
                     apellidos, nif);
         }else{
             
-            return new Administrativo(grupo.GRUPOB, numSS, salario, nombre, 
+            return new Administrativo(GrupoAdmin.GRUPOB, numSS, salario, nombre, 
                     apellidos, nif);
         }
     }
